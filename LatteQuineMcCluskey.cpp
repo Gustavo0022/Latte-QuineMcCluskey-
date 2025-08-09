@@ -179,13 +179,17 @@ int main(int argc, char* argv[]) {
     if(argc < 1){
         cout << "Nenhum arquivo .pla encontrado." << endl;
         cout << "Sintaxe: ./quinemccluskey [nome do arquivo].pla [args] [arquivo de saida]" << endl;
+        cout << "Para solicitar ajuda, utilize ./Latte -h";
         return EXIT_FAILURE;
     }
 
-    if(primeiroArg == "help"){
-        cout << "Sintaxe: ./quinemccluskey [nome do arquivo].pla [args] [arquivo de saida]";
+    if(primeiroArg == "-h"){ 
+        cout << "Sintaxe: ./Latte [nome do arquivo].pla [args] [arquivo de saida]" << endl;
+        cout << "Argumentos:" << endl;
+        cout << "W.I.P. (foi mal)" << endl;
         return EXIT_FAILURE;
     }
+
 
     
    
@@ -211,6 +215,7 @@ int main(int argc, char* argv[]) {
     }
     cout << endl;
 
+    
 
  
     vector<Termo> implicantesPrimos;
@@ -274,7 +279,7 @@ int main(int argc, char* argv[]) {
     set<uint64_t> mintermosACobrir(mintermosDecimais.begin(), mintermosDecimais.end());
     set<uint64_t> indicesImplicantesUsados;
 
-    cout << "\n--- Selecionando Implicantes Essenciais ---\n";
+    cout << "\n Selecionando Implicantes Essenciais \n";
     for (int mintermoParaCobrir : mintermosDecimais) {
         int contagemDeCoberturas = 0;
         int ultimoIndiceImplicante = -1;
@@ -297,7 +302,7 @@ int main(int argc, char* argv[]) {
         }
     }
     
-    cout << "\n--- Cobrindo Mintermos Restantes ---\n";
+    cout << "\nCobrindo Mintermos Restantes \n";
     while (!mintermosACobrir.empty()) {
         int melhorIndiceImplicante = -1;
         int maxMintermosCobertos = 0;
@@ -346,12 +351,7 @@ int main(int argc, char* argv[]) {
     cout << "\n\nTermos da tabela simplificada\n\n";
     imprimirTabela(solucaoFinal);
 
-    if(argv[2] == "-o"){
-        output.open(argv[3]);
-        imprimirTabelaParaArquivo(solucaoFinal);
-
-        cout << "\nTabela exportada para " << argv[3];
-    }
+   
 
     return 0;
 }
